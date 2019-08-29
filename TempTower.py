@@ -20,9 +20,9 @@ class TempTower(Script):
                 'start_temperature': {
                     'label': 'Start Temperature',
                     'description': 'Initial nozzle temperature',
-                    'unit': 'C',
+                    'unit': '°C',
                     'type': 'int',
-                    'default_value': 190
+                    'default_value': 265
                 },
                 'height_increment': {
                     'label': 'Height Increment',
@@ -40,9 +40,18 @@ class TempTower(Script):
                         'Increase temperature by this much with each height increment. '
                         'Use negative values for towers that become gradually cooler.'
                     ),
-                    'unit': 'C',
+                    'unit': '°C',
                     'type': 'int',
                     'default_value': 5
+                },
+                'start_height': {
+                    'label': 'Start Height ',
+                    'description': (
+                        'Start the temperature tower at this height.'
+                    ),
+                    'unit': 'mm',
+                    'type': 'float',
+                    'default_value': 1.4
                 }
             }
         })
@@ -51,6 +60,7 @@ class TempTower(Script):
         start_temp = self.getSettingValueByKey('start_temperature')
         height_inc = self.getSettingValueByKey('height_increment')
         temp_inc = self.getSettingValueByKey('temperature_increment')
+        start_height = self.getSettingValueByKey('start_height')
 
         cmd_re = re.compile(
             r'G[0-9]+ '
@@ -79,7 +89,11 @@ class TempTower(Script):
                 if match is None:
                     continue
                 z = float(match.groups()[0])
-                new_temp = start_temp + int(z / height_inc) * temp_inc
+				
+                if z < start_height:
+                    continue
+				
+                new_temp = start_temp + int((z - start_height) / height_inc) * temp_inc
 
                 if new_temp != current_temp:
                     current_temp = new_temp
