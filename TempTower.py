@@ -97,7 +97,7 @@ class TempTower(Script):
 
                 if new_temp != current_temp:
                     current_temp = new_temp
-                    lines[j] += '\n;TYPE:CUSTOM\nM109 S%d' % new_temp
+                    lines[j] += '\n;TYPE:CUSTOM\nM104 S%d' % new_temp
             data[i] = '\n'.join(lines)
 
         return data
