@@ -42,7 +42,7 @@ class TempTower(Script):
                     ),
                     'unit': '°C',
                     'type': 'int',
-                    'default_value': 5
+                    'default_value': -5
                 },
                 'start_height': {
                     'label': 'Start Height ',
