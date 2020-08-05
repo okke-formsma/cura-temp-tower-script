@@ -64,6 +64,7 @@ class TempTower(Script):
 
         cmd_re = re.compile(
             r'G[0-9]+ '
+            r'(?:F[0-9]+ )?'
             r'X[0-9]+\.?[0-9]* '
             r'Y[0-9]+\.?[0-9]* '
             r'Z(-?[0-9]+\.?[0-9]*)'
