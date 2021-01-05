@@ -2,7 +2,8 @@
 
 Copy TempTower.py into your cura directory like the following;
 
-C:\Program Files\Ultimaker Cura 4.1\plugins\PostProcessingPlugin\scripts
+* (windows) C:\Program Files\Ultimaker Cura 4.1\plugins\PostProcessingPlugin\scripts
+* (mac) If your copy of Cura is in /Applications/, it would go into "/Applications/Ultimaker Cura.app/Contents/Resources/plugins/plugins/PostProcessingPlugin/scripts/"
 
 This script is based on some variations I found on Thingiverse.
 
